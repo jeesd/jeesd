@@ -1,0 +1,60 @@
+server:
+  port: 8440
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: jeesd-gatway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          #服务serviceId不分区大小写
+          lowerCaseServiceId: true
+      routes:
+        #网关路由的转发 lb:// 表示是从注册中心发现serviceId
+        - id: jeesd-auth
+          uri: lb://jeesd-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: jeesd-sys-service
+          uri: lb://jeesd-sys-service
+          predicates:
+            - Path=/sys/**
+          filters:
+            - StripPrefix=1
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://jeesd:jeesd@localhost:8088/eureka/
+    fetch-registry: true
+  instance:
+    appname: jeesd-gateway
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: client-secret
+      grant-type: password
+      access-token-uri: http://localhost:8440/auth/oauth/token
+      user-authorization-uri: http://localhost:8440/auth/oauth/authorize
+    resource:
+      user-info-uri:  http://localhost:8440/auth/user/userInfo
+      token-info-uri: http://localhost:8440/auth/oauth/check_token
+      prefer-token-info: true
+feign:
+  hystrix:
+    enabled: true
+logging:
+  file: jeesd-gateway
+  level:
+    org.mybatis: info
+    org.springframework.web: error
+    com.jeesd.gateway: debug

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesd.sys.mapper.ResourceMapper">
+
+    <!-- 通过角色id查询权限列表-->
+    <select id="queryPermissionByRoleId" parameterType="java.lang.Long"
+            resultType="com.jeesd.sys.dto.PermissionDto">
+         SELECT
+            sr.id AS permissionId,
+            sr.path AS path,
+            sr.name AS permissionName,
+            sr.permission AS permission
+        FROM
+            sys_resource sr,
+            sys_role_resource srr
+        WHERE
+            sr.id = srr.resource_id
+        AND srr.role_id IN(#{roleId})
+    </select>
+
+    <!-- 通过角色id查询菜单列表-->
+    <select id="queryMenuByRoleId" parameterType="java.lang.Long"
+        resultType="com.jeesd.sys.domain.ResourceModel">
+        SELECT
+            sr.id AS id,
+            sr.name AS name,
+            sr.permission AS permission,
+            sr.path AS path,
+            sr.parent_id AS parentId,
+            sr.icon AS icon,
+            sr.type AS type,
+            sr.status AS status,
+            sr.component AS component,
+            sr.operator AS operator,
+            sr.create_time AS createTime
+        FROM
+            sys_resource sr
+        LEFT JOIN sys_role_resource srr ON sr.id = srr.resource_id
+        WHERE
+            sr. STATUS = 0
+        AND srr.role_id = #{roleId}
+        ORDER BY
+            sr.sort ASC
+    </select>
+    <!--通过角色查询权限标识符-->
+    <select id="getPermissionByRoles" resultType="java.lang.String">
+        SELECT
+            sre.permission
+        FROM
+            sys_resource sre
+        LEFT JOIN sys_role_resource srr
+        ON sre.id = srr.resource_id
+        WHERE srr.role_id IN
+        <foreach collection="roles" index="index" item="item" open="(" separator="," close=")">
+            #{item.roleId}
+        </foreach>
+    </select>
+
+    <select id="getMenusByRoles" resultType="com.jeesd.sys.domain.ResourceModel">
+        SELECT
+            sre.id AS id,
+            sre.name AS name,
+            sre.permission AS permission,
+            sre.path AS path,
+            sre.parent_id AS parentId,
+            sre.icon AS icon,
+            sre.type AS type,
+            sre.status AS status,
+            sre.component AS component,
+            sre.operator AS operator,
+            sre.create_time AS createTime
+        FROM
+        sys_resource sre
+        LEFT JOIN sys_role_resource srr
+        ON sre.id = srr.resource_id
+        WHERE srr.role_id IN
+        <foreach collection="roles" index="index" item="item" open="(" separator="," close=")">
+            #{item.roleId}
+        </foreach>
+    </select>
+</mapper>

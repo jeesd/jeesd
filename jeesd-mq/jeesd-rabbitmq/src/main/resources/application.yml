@@ -1,0 +1,19 @@
+spring:
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+    #RabbitMQ 默认的用户名和密码都是guest 而虚拟主机名称是 "/"
+    username: guest
+    password: guest
+    virtual-host: /
+    #是否开启发布者确认
+    publisher-confirms: true
+    #是否开启发布者返回
+    publisher-returns: true
+    #是否开启强制消息
+    template:
+      mandatory: true
+    listener:
+      simple:
+        #设置为手工签收模式
+        acknowledge-mode: manual
+

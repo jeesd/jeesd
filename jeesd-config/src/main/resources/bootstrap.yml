@@ -1,0 +1,35 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: jeesd-config
+  #config默认是git，加载本地文件需要native
+  #profiles:
+    #active: native
+  cloud:
+    config:
+      server:
+        #本地文件配置
+        #native:
+          #search-locations: classpath:/config/
+        git:
+          uri: http://github.com/jeesd/jeesd-XX
+          search-paths: jeesd-XX
+          #github公开库可以不用
+          username:
+          password:
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://jeesd:jeesd@localhost:8088/eureka/
+    fetch-registry: true
+  instance:
+    appname: jeesd-config
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

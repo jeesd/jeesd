@@ -1,0 +1,56 @@
+server:
+  port: 8440
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: jeesd-gatway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://jeesd:jeesd@localhost:8088/eureka/
+    fetch-registry: true
+  instance:
+    appname: jeesd-gateway
+
+logging:
+  file: jeesd-gateway
+  level:
+    org.mybatis: info
+    org.springframework.web: error
+    com.jeesd.gateway: debug
+
+zuul:
+  routes:
+    auth:
+      path: /auth/**
+      sensitiveHeaders:
+      serviceId: jeesd-auth
+    sys:
+      path: /sys/**
+      sensitiveHeaders:
+      serviceId: jeesd-sys-service
+  add-proxy-headers: true
+
+  retryable: false
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+  ribbon:
+    eager-load:
+      enabled: true
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: client-secret
+      grant-type: password
+      access-token-uri: http://localhost:8440/auth/oauth/token
+      user-authorization-uri: http://localhost:8440/auth/oauth/authorize
+    resource:
+      user-info-uri:  http://localhost:8440/auth/user/userInfo
+      token-info-uri: http://localhost:8440/auth/oauth/check_token
+      prefer-token-info: true
+

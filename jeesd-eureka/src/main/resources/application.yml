@@ -1,0 +1,22 @@
+server:
+  port: 8088
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://jeesd:jeesd@${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enable-self-preservation: false
+
+spring:
+  application:
+    name: jeesd-eureka
+  security:
+    user:
+      name: jeesd
+      password: jeesd

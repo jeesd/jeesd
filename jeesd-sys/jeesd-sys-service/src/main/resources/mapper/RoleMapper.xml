@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesd.sys.mapper.RoleMapper">
+
+    <!-- 通过用户ID，查询角色信息-->
+    <select id="queryRoleByUserId" parameterType="java.lang.Long"
+            resultType="com.jeesd.sys.dto.RoleDto">
+        SELECT
+            sr.id AS roleId,
+            sr.role_name AS roleName
+        FROM
+            sys_role sr,
+            sys_user_role sur
+        WHERE
+            sr.id = sur.role_id
+        AND sur.user_id IN (#{userId})
+    </select>
+
+    <!-- 通过用户ID，查询角色信息列表-->
+    <select id="getRoleByUserId" parameterType="java.lang.Long"
+            resultType="com.jeesd.sys.dto.RoleTreeDto">
+        SELECT
+            sr.id AS roleId,
+            sr.role_name AS roleName
+        FROM
+            sys_role sr,
+            sys_user_role sur
+        WHERE
+            sr.id = sur.role_id
+        AND sur.user_id IN (#{userId})
+    </select>
+
+    <!--分页查询角色列表 -->
+    <select id="getRolesPage" resultType="com.jeesd.sys.domain.RoleModel">
+        SELECT
+        sr.id AS id,
+        sr.role_name AS roleName,
+        sr.role_code AS roleCode,
+        sr.role_remark AS roleRemark,
+        sr.status AS status,
+        sr.operator AS operator,
+        sr.create_time AS createTime
+        FROM
+        sys_role sr
+        <where>
+            <if test="role.roleName != null and role.roleName != ''">
+                AND sr.role_name LIKE CONCAT('%',#{role.roleName},'%')
+            </if>
+            <if test="role.status != null">
+                AND  sr.status = #{role.status}
+            </if>
+        </where>
+        ORDER BY sr.create_time DESC
+    </select>
+</mapper>

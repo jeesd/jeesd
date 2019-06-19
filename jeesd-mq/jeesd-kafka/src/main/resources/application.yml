@@ -1,0 +1,33 @@
+spring:
+  kafka:
+    #kafka集群地址以逗号分隔，默认端口9092
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      #重试次数
+      retries: 0
+      #一个批次可以使用的内存大小，按照字节计算
+      batch-size: 16384
+      # 设置生产者内存缓冲区的大小
+      buffer-memory: 33554432
+      #key序列化方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value序列化方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # acks=0 ： 生产者在成功写入消息之前不会等待任何来自服务器的响应。
+      # acks=1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。
+      # acks=all ：只有当所有参与复制的节点全部收到消息时，生产者才会收到一个来自服务器的成功响应。
+      acks: 1
+    consumer:
+      # 当Kafka中没有初始偏移量或者服务器上不再存在当前偏移量时该怎么办，默认值为latest，表示自动将偏移重置为最新的偏移量,可选的值为latest, earliest, none
+      auto-offset-reset: earliest
+      # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
+      enable-auto-commit: true
+      #自动提交的时间间隔,在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
+      auto-commit-interval: 1S
+      # key反序列化方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # value反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      listener:
+        # 在侦听器容器中运行的线程数
+        concurrency: 3
