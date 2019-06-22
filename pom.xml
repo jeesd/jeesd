@@ -20,6 +20,7 @@
         <module>jeesd-config</module>
         <module>jeesd-mq</module>
         <module>jeesd-websocket</module>
+        <module>jeesd-job</module>
     </modules>
 
 

@@ -7,6 +7,12 @@
     <file url="file://$PROJECT_DIR$/jeesd-eureka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jeesd-gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jeesd-generate" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jeesd-job" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jeesd-job/src/main/java/com/jeesd/job/config/SwaggerConfig.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-job/src/main/resources/static/api" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-job/src/main/resources/static/index.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-job/src/main/resources/static/load.gif" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-job/src/main/resources/static/robots.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/jeesd-mq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jeesd-mq/jeesd-kafka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jeesd-mq/jeesd-rabbitmq" charset="UTF-8" />
@@ -16,8 +22,17 @@
     <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-domain" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service/src/main/java/com/jeesd/sys/config/SwaggerConfig.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service/src/main/resources/static/api" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service/src/main/resources/static/index.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service/src/main/resources/static/load.gif" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-sys/jeesd-sys-service/src/main/resources/static/robots.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/jeesd-websocket" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jeesd-websocket/src/main/resources/static/api" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-websocket/src/main/resources/static/index.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-websocket/src/main/resources/static/load.gif" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/jeesd-websocket/src/main/resources/static/robots.txt" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

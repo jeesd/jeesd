@@ -13,6 +13,7 @@
         <module name="jeesd-eureka" />
         <module name="jeesd-gateway" />
         <module name="jeesd-generate" />
+        <module name="jeesd-job" />
         <module name="jeesd-kafka" />
         <module name="jeesd-parent" />
         <module name="jeesd-rabbitmq" />

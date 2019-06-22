@@ -1,2 +1,11 @@
 server:
   port: 8666
+  servlet:
+    context-path: /
+eureka:
+  client:
+    service-url:
+      defaultZone: http://jeesd:jeesd@localhost:8088/eureka/
+    fetch-registry: true
+  instance:
+    appname: jeesd-websocket
