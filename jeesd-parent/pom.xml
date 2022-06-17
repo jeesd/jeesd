@@ -22,7 +22,7 @@
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
         <jackson.modules>2.9.8</jackson.modules>
         <mysql.version>5.1.38</mysql.version>
-        <fastjson.version>1.2.45</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <swagger.version>2.7.0</swagger.version>
     </properties>
 
